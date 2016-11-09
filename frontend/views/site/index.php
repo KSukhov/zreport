@@ -4,6 +4,9 @@
 
 $this->title = 'Home';
 ?>
+<script>
+console.log(document.cookie);
+</script>
 <div class="site-index">
 
 

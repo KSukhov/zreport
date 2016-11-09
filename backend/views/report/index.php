@@ -14,17 +14,9 @@
 use dosamigos\datepicker\DatePicker;
 use common\models\Union;
 
-	Yii::$app->mailer->compose()
-            ->setFrom('zdorov-report@yandex.ru') 
-            ->setTo('sukhov-kirill@yandex.ru')
-            ->setSubject('Запрошен отчет') 
-            ->setTextBody("Запрошен отчет за период с  \n http://zreport.cg41118.tmweb.ru/frontend/web/report/edit?id=")
-			->setHtmlBody("Запрошен <a href='http://zreport.cg41118.tmweb.ru/frontend/web/report/edit?id='>отчет за период с  по</a>" )
-            ->send();
-	
 
 
-$this->title = 'Отчеты:';
+$this->title = 'Отчеты';
 
 ?>
 
@@ -122,7 +114,7 @@ $this->title = 'Отчеты:';
                     'options' => ['width' => '50px'],
                     'value' => function($model) {
                         $user = \common\models\User::findIdentity($model->user_id);
-                        return $user->username;
+                        return $user->real_name;
                     }
                 ],
 

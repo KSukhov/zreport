@@ -35,9 +35,9 @@ echo \yii\grid\GridView::widget(
                 'format' => 'raw',
                 'value' => function($model) {
                     if($model->sended !=1) {
-                        $content = "<a href='/report/edit?id=" . $model->id . "'' > C " . $model->start . " по " . $model->end . "</a>";
+                        $content = "<a href='edit?id=" . $model->id . "'' > C " . $model->start . " по " . $model->end . "</a>";
                     } else {
-                        $content = "<a target=_blanck href='/report/show?id=" . $model->id . "'' > C " . $model->start . " по " . $model->end . "</a>";
+                        $content = "<a target=_blanck href='show?id=" . $model->id . "'' > C " . $model->start . " по " . $model->end . "</a>";
                     }
                     return $content;
                  }

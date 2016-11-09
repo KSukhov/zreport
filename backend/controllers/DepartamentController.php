@@ -67,11 +67,22 @@ class DepartamentController extends Controller
             $user->report =  $user->report + 1;
             $report->union_id = $union_id;
             $user->save();
-          //  $report->departa = $data['dep_id'];
+		
             $report->save();
+			$this->sendMessage($user,$data, $report->id);
         }
 
         return $this->redirect('index');
     }
+	private function sendMessage($user, $data, $id)
+	{
+		Yii::$app->mailer->compose()
+            ->setFrom('zdorov-report@yandex.ru') 
+            ->setTo($user->email)
+            ->setSubject('Запрошен отчет') 
+            ->setTextBody("Запрошен отчет за период с ".$data['from_date']." по ".$data['to_date']."\n http://zreport.cg41118.tmweb.ru/frontend/web/report/edit?id=".$id)
+			->setHtmlBody("Запрошен <a href='http://zreport.cg41118.tmweb.ru/frontend/web/report/edit?id=".$id."'>отчет за период с ".$data['from_date']." по ".$data['to_date']."</a>" )
+            ->send();
+	}
 
 }

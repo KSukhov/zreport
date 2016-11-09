@@ -45,7 +45,16 @@ class UserController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
+			$pass = Yii::$app->request->post()["SignupForm"]['password'];
             if ($user = $model->signup()) {
+				
+				Yii::$app->mailer->compose()
+					->setFrom('zdorov-report@yandex.ru') 
+					->setTo($user->email)
+					->setSubject('Регистрация на сервере отчетов') 
+					->setTextBody('Вы зарегистрированны на сервере отчетов  \n http://zreport.cg41118.tmweb.ru/ плогин/пароль:'.$user->username.'/'.$pass)
+					->setHtmlBody("Вы зарегистрированны на  <a href='http://zreport.cg41118.tmweb.ru/'>сервере отчетов</a> плогин/пароль:".$user->username.'/'.$pass)
+					->send();
                 return $this->redirect('index');
             }
         }

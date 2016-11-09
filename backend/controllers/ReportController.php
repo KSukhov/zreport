@@ -49,7 +49,7 @@ class ReportController extends Controller
         $report = Report::findIdentity($get['id']);
         $items = ReportItem::getItems($get['id']);
         $user = User::findOne(['id' => $report->user_id ]);
-        return $this->render('show',['report' => $report, 'items' => $items, 'user' => $user->username]);
+        return $this->render('show',['report' => $report, 'items' => $items, 'user' => $user->real_name]);
     }
     public function actionShowUnion(){
         $this->layout = 'print';
